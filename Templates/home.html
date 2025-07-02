@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="background-image: url('/static/images/background.jpg');">
+  {% include 'base_header.html' %}
+
+  <div class="container">
+    <h1>Welcome {{ session['user'] }}</h1>
+
+    <div class="stats">
+      <div class="card">
+        <h3>Total Logs</h3>
+        <p>{{ total_entries }}</p>
+      </div>
+      <div class="card">
+        <h3>Avg Daily Calories</h3>
+        <p>{{ avg_calories or 'N/A' }}</p>
+      </div>
+      <div class="card">
+        <h3>Today's Calories</h3>
+        <p>{{ today_calories or '0' }}</p>
+      </div>
+      <div class="card">
+        <h3>Fav Workout</h3>
+        <p>{{ favorite_workout }}</p>
+      </div>
+      <div class="card">
+        <h3>Fav Food</h3>
+        <p>{{ favorite_food }}</p>
+      </div>
+    </div>
+
+    <p>Current Streak: <strong>{{ streak }} days</strong></p>
+
+    <h3>Recent Entries</h3>
+    <ul>
+      {% for e in entries[-5:] %}
+        <li>
+          {{ e.date }}: {{ e.calories or 'N/A' }} kcal, Workout: {{ e.workouts }}, Foods: {{ e.food_items }}
+          <span style="font-size:0.9em; color: #888;">
+            [{{ 'Public' if e.privacy == 'Public' else 'Private' }}]
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>

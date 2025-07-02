@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Log Entry</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .search-input {
+      margin-bottom: 8px;
+      padding: 5px;
+      border-radius: 4px;
+    }
+    select[multiple] {
+      height: 160px;
+      padding: 5px;
+    }
+    button {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body class="green-bg">
+  {% include 'base_header.html' %}
+  <div class="container">
+    <h2>Log Today's Details</h2>
+    <form method="post">
+
+      <div class="form-grid">
+        <!-- WORKOUTS -->
+        <div class="form-group">
+          <label for="workouts">Select Workouts:</label>
+          <input type="text" id="workoutSearch" class="search-input" placeholder="Search workouts..." onkeyup="filterOptions('workouts', 'workoutSearch')">
+          <select id="workouts" name="workouts" multiple optional>
+            {% if workouts|length == 0 %}
+              <option value="" disabled>No workouts available</option>
+            {% endif %}
+            {% if workouts|length > 0 %}
+              <option value="" disabled>Select workouts</option>
+            {% endif %}
+            {% if workouts|length == 1 %}
+              <option value="{{ workouts[0].name }}">{{ workouts[0].name }}</option>
+            {% endif %}
+            {% for w in workouts %}
+              <option value="{{ w.name }}">{{ w.name }}</option>
+            {% endfor %}
+          </select>
+          <a class="small-link" href="/add_workout">+ Add Workout</a>
+        </div>
+
+        <!-- FOODS -->
+        <div class="form-group">
+          <label for="foods">Select Foods:</label>
+          <input type="text" id="foodSearch" class="search-input" placeholder="Search foods..." onkeyup="filterOptions('foods', 'foodSearch')">
+          <select id="foods" name="foods" multiple>
+            {% for f in foods %}
+              <option value="{{ f.name }}">{{ f.name }} ({{ f.calories }} kcal)</option>
+            {% endfor %}
+          </select>
+          <a class="small-link" href="/add_food">+ Add Food</a>
+        </div>
+      </div>
+
+      <!-- PRIVACY -->
+      <div class="form-group" style="margin-top: 20px;">
+        <label for="privacy">Privacy:</label>
+        <select name="privacy" id="privacy">
+          <option value="Public">Public</option>
+          <option value="Private">Private</option>
+        </select>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    function filterOptions(selectId, searchId) {
+      const search = document.getElementById(searchId).value.toLowerCase();
+      const select = document.getElementById(selectId);
+      const options = select.options;
+
+      for (let i = 0; i < options.length; i++) {
+        const text = options[i].text.toLowerCase();
+        options[i].style.display = text.includes(search) ? "" : "none";
+      }
+    }
+  </script>
+</body>
+</html>

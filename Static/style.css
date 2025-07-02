@@ -1,0 +1,433 @@
+/* === General Reset & Fonts === */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2e7d32;
+  background-image: url("/static/images/background.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+/* Remove background image for home.html */
+ 
+  /* background-image: none !important;
+  background-color: #f0f0f0 !important; */
+
+
+/* Dark overlay to improve readability */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.45); /* semi-transparent black */
+  z-index: -1;
+}
+
+/* === Top Navigation Bar Styling === */
+.top-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background-color: #2e7d32;
+  padding: 20px 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+/* If you want the site name on the left and nav buttons centered, use this: */
+.top-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background-color: #2e7d32;
+  padding: 20px 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.site-name {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.nav-center {
+  grid-column: 2;
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.top-nav .right-section {
+  grid-column: 3;
+  justify-self: end;
+}
+
+/* Fix vertical centering inside top-nav children */
+.top-nav > * {
+  display: flex;
+  align-items: center;
+}
+
+/* Site name on left, big and bold */
+.site-name {
+  color: #e0f2f1;        /* light teal */
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  user-select: none;
+  cursor: default;
+  transition: color 0.3s ease;
+  line-height: 1;         /* tight line height to align better */
+  margin: 0;
+  height: 100%;
+  flex-shrink: 0;         /* prevent shrinking */
+}
+
+.site-name:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #a3d9d9;
+}
+
+/* Center container for nav buttons */
+.nav-center {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-grow: 1;         /* take all available space */
+  max-width: 500px;     /* optional max width to avoid stretching too wide */
+  margin: 0 auto;
+}
+
+/* Navigation buttons */
+.nav-btn {
+  color: #e0f2f1;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease;
+  font-size: 1rem;
+  user-select: none;
+  line-height: 1;         /* align text nicely */
+  display: flex;
+  align-items: center;    /* vertical center text inside buttons */
+  justify-content: center;
+  white-space: nowrap;
+  margin: 0;
+  height: 100%;
+}
+
+/* Hover state */
+.nav-btn:hover {
+  background-color: #1b5e20;   /* darker green */
+  color: #8B0000;
+  transform: scale(1.05);
+  box-shadow: 0 0 8px #1b5e20;
+}
+
+/* Active (selected) nav button */
+.nav-btn.active {
+  background-color: #1b5e20;
+  color: #a3d9d9;
+  font-weight: 700;
+  box-shadow: 0 0 8px #1b5e20;
+  transform: scale(1.1);
+}
+
+/* Remove default blue focus ring and color; use dark red (#8B0000) */
+.nav-btn:focus {
+  outline: none;
+  color: #8B0000;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Pressed (mouse down) effect with dark red text */
+.nav-btn:active {
+  color: #8B0000;
+  background-color: transparent;
+  transform: scale(0.98);
+  box-shadow: none;
+}
+
+/* === Container for Page Content === */
+.container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 25px 30px;
+  background-color: rgba(20, 45, 35, 0.85); /* dark green transparent */
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  color: #e0f2f1; /* light text */
+  text-align: center;
+}
+
+/* === Headings === */
+h1, h2 {
+  color: #2e7d32; /* deep green */
+  margin-bottom: 20px;
+}
+
+/* === Form Cards === */
+.form-card {
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: left;
+  color: #2e7d32;
+}
+.form-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* === Form Controls === */
+input,
+select,
+button {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* === Buttons === */
+button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+button:hover:not(:disabled) {
+  background: #1b5e20;
+  transform: translateY(-2px);
+}
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* === Small Link Buttons (+ Add Food / + Add Workout) === */
+.small-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 14px;
+  background-color: #8B0000;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(44, 122, 123, 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  width: fit-content;
+}
+.small-link:hover {
+  background-color: #8B0000;
+  box-shadow: 0 5px 10px rgba(40, 94, 95, 0.6);
+  color: #e0f2f1;
+  text-decoration: none;
+}
+.small-link:active {
+  background-color: #8B0000;
+  box-shadow: none;
+  transform: translateY(1px);
+}
+
+/* === Dual Column Layout for Form Sections === */
+.dual-col {
+  display: flex;
+  gap: 20px;
+}
+.dual-col > div {
+  flex: 1;
+}
+.dual-col label {
+  display: block;
+  margin: 5px 0;
+}
+
+/* === Multi-select Boxes === */
+select[multiple] {
+  height: 160px;
+  padding: 5px;
+}
+
+/* === Search Inputs Above Select === */
+.search-input {
+  margin-bottom: 8px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* === Privacy Select Box (Shorter + Centered) === */
+#privacy {
+  width: 100px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  display: block;
+  margin: 0 auto;
+}
+
+/* === Form Styling === */
+form {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: left;
+}
+
+/* === Headings inside forms (optional) === */
+form h2 {
+  color: #2e7d32;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* === Top Navigation Bar Styling (HTML Structure Change) === */
+.top-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background-color: #2e7d32;
+  padding: 20px 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.site-name {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.nav-center {
+  grid-column: 2;
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.top-nav .right-section {
+  grid-column: 3;
+  justify-self: end;
+}
+
+/* Fix vertical centering inside top-nav children */
+.top-nav > * {
+  display: flex;
+  align-items: center;
+}
+
+/* Site name on left, big and bold */
+.site-name {
+  color: #e0f2f1;        /* light teal */
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  user-select: none;
+  cursor: default;
+  transition: color 0.3s ease;
+  line-height: 1;         /* tight line height to align better */
+  margin: 0;
+  height: 100%;
+  flex-shrink: 0;         /* prevent shrinking */
+}
+
+.site-name:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #a3d9d9;
+}
+
+/* Center container for nav buttons */
+.nav-center {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-grow: 1;         /* take all available space */
+  max-width: 500px;     /* optional max width to avoid stretching too wide */
+  margin: 0 auto;
+}
+
+/* Navigation buttons */
+.nav-btn {
+  color: #e0f2f1;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease;
+  font-size: 1rem;
+  user-select: none;
+  line-height: 1;         /* align text nicely */
+  display: flex;
+  align-items: center;    /* vertical center text inside buttons */
+  justify-content: center;
+  white-space: nowrap;
+  margin: 0;
+  height: 100%;
+}
+
+/* Hover state */
+.nav-btn:hover {
+  background-color: #1b5e20;   /* darker green */
+  color: #8B0000;
+  transform: scale(1.05);
+  box-shadow: 0 0 8px #1b5e20;
+}
+
+/* Active (selected) nav button */
+.nav-btn.active {
+  background-color: #1b5e20;
+  color: #a3d9d9;
+  font-weight: 700;
+  box-shadow: 0 0 8px #1b5e20;
+  transform: scale(1.1);
+}
+
+/* Remove default blue focus ring and color; use dark red (#8B0000) */
+.nav-btn:focus {
+  outline: none;
+  color: #8B0000;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Pressed (mouse down) effect with dark red text */
+.nav-btn:active {
+  color: #8B0000;
+  background-color: transparent;
+  transform: scale(0.98);
+  box-shadow: none;
+}

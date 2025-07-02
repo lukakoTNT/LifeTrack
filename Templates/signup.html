@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body class="green-bg">
+  <div class="form-card">
+    <h2>Sign Up</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form method="post" onsubmit="return validatePasswords();">
+      <input name="username" placeholder="Username" required>
+      <input 
+        name="password" 
+        id="password"
+        type="password" 
+        placeholder="Password" 
+        required 
+        pattern="^(?=.*\d).{8,}$"
+        title="At least 8 characters and one number"
+      >
+      <input 
+        name="repeat_password" 
+        id="repeat_password"
+        type="password" 
+        placeholder="Repeat Password" 
+        required
+      >
+      <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="/login">Login</a></p>
+  </div>
+  <script>
+    function validatePasswords() {
+      var pw = document.getElementById('password').value;
+      var rpw = document.getElementById('repeat_password').value;
+      if (pw !== rpw) {
+        alert('Passwords do not match.');
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
